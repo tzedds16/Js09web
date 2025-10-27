@@ -89,13 +89,35 @@ function loadAllCategories() {
       .catch(err => ({ key: cat.key, label: cat.label, articles: [] }));
   });
 
-  Promise.all(promises).then(results => {
-    results.forEach(result => {
-      const cardsContainer = createSection(result.label, result.key);
-      renderArticles(cardsContainer, result.articles);
+  // Filtros por categoría
+Promise.all(promises).then(results => {
+  results.forEach(result => {
+    const cardsContainer = createSection(result.label, result.key);
+    renderArticles(cardsContainer, result.articles);
+  });
+  
+  attachCategoryFilters();
+});
+
+function attachCategoryFilters() {
+  const buttons = document.querySelectorAll('.categorias button');
+  buttons.forEach(btn => {
+    const label = btn.textContent.trim().toLowerCase();
+    btn.addEventListener('click', () => {
+      const sections = document.querySelectorAll('.news-section');
+      let matched = false;
+      sections.forEach(sec => {
+        const title = sec.querySelector('h2').textContent.trim().toLowerCase();
+        if (title === label) {
+          sec.style.display = '';
+          matched = true;
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+      if (!matched) sections.forEach(s => s.style.display = '');
     });
   });
 }
-
-// Inicio - Solo carga las categorías sin filtros
+}
 loadAllCategories();
