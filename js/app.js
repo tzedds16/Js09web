@@ -1,7 +1,7 @@
 // Selecciona el contenedor principal donde se crearán las secciones
 const sectionsContainer = document.getElementById('sectionsContainer');
 
-// Categorías: key = category para NewsAPI, label = texto mostrado
+// Categorías: key = categoria para NewsAPI, label = texto mostrado
 const categories = [
   { key: 'business', label: 'Negocios' },
   { key: 'health', label: 'Salud' },
@@ -30,7 +30,7 @@ function createSection(label, id) {
   return cards;
 }
 
-// Renderiza artículos dentro de un contenedor de tarjetas
+// Renderiza artículos 
 function renderArticles(container, articles) {
   if (!articles || articles.length === 0) {
     const msg = document.createElement('p');
@@ -43,7 +43,7 @@ function renderArticles(container, articles) {
     const card = document.createElement('article');
     card.className = 'news-card';
 
-    // Imagen (opcional)
+    // Imagen 
     if (article.urlToImage) {
       const img = document.createElement('img');
       img.src = article.urlToImage;
@@ -79,7 +79,7 @@ function renderArticles(container, articles) {
   });
 }
 
-// Fetch por categoría (top-headlines). Hacemos fetch en paralelo y montamos las secciones.
+// Fetch por categoría 
 function loadAllCategories() {
   const promises = categories.map(cat => {
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=${cat.key}&apiKey=${API_KEY}`;
@@ -121,3 +121,24 @@ function attachCategoryFilters() {
 }
 }
 loadAllCategories();
+
+// Filtrado por búsqueda
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+
+searchForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const query = searchInput.value.trim().toLowerCase();
+  if (!query) return;
+
+  const allCards = document.querySelectorAll('.news-card');
+  allCards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const desc = card.querySelector('p').textContent.toLowerCase();
+    if (title.includes(query) || desc.includes(query)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});

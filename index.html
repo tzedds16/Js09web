@@ -10,8 +10,12 @@
 
   <!-- ENCABEZADO -->
   <header class="header">
-    <h1><em>Noticias 📰</em></h1>
-  </header>
+  <h1><em>Noticias 📰</em></h1>
+  <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Buscar noticias...">
+    <button type="submit">🔍</button>
+  </form>
+</header>
 
   <!-- MENÚ DE CATEGORÍAS -->
   <nav class="categorias">
@@ -24,7 +28,6 @@
   
 <!-- Contenedor dinámico -->
 <main>
-  <!-- Contenedor principal donde JS creará una sección por categoría -->
   <div id="sectionsContainer"></div>
 </main>
 
