@@ -1,0 +1,48 @@
+/* ==== RESETEO GENERAL ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* ==== ENCABEZADO ==== */
+.header {
+  background-color: #d62828;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+/* ==== CATEGORÍAS ==== */
+.categorias {
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+.categorias button {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.categorias button:hover {
+  background-color: #d62828;
+  color: white;
+}
+/* ==== PIE DE PÁGINA ==== */
+.footer {
+  background-color: #262626;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+}
