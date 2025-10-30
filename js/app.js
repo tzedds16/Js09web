@@ -150,3 +150,72 @@ if (homeBtn) {
     location.href = 'index.html';
   });
 }
+
+// === NOTICIAS DESTACADAS ===
+function loadFeaturedNews() {
+  const API_KEY = '721e24037b564de1898770f86c1c8a17';
+  const featuredContainer = document.getElementById('featuredContainer');
+
+  const url = `https://newsapi.org/v2/top-headlines?country=us&pageSize=5&apiKey=${API_KEY}`;
+
+  const featuredSection = document.getElementById('featuredSection');
+  const categoryButtons = document.querySelectorAll('.categorias button');
+
+  categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (button.id === 'homeBtn') {
+        featuredSection.style.display = 'block';
+      } else {
+        featuredSection.style.display = 'none';
+      }
+    });
+  });
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      const articles = data.articles || [];
+      if (articles.length === 0) {
+        featuredContainer.innerHTML = '<p>No hay noticias destacadas disponibles.</p>';
+        return;
+      }
+
+      articles.forEach(article => {
+        const card = document.createElement('article');
+        card.className = 'featured-card';
+
+        if (article.urlToImage) {
+          const img = document.createElement('img');
+          img.src = article.urlToImage;
+          img.alt = article.title;
+          card.appendChild(img);
+        }
+
+        const body = document.createElement('div');
+        body.className = 'card-body';
+
+        const title = document.createElement('h3');
+        title.textContent = article.title;
+        body.appendChild(title);
+
+        const desc = document.createElement('p');
+        desc.textContent = article.description || 'Sin descripción disponible';
+        body.appendChild(desc);
+
+        const link = document.createElement('a');
+        link.href = article.url;
+        link.target = '_blank';
+        link.textContent = 'Leer más';
+        body.appendChild(link);
+
+        card.appendChild(body);
+        featuredContainer.appendChild(card);
+      });
+    })
+    .catch(() => {
+      featuredContainer.innerHTML = '<p>Error al cargar noticias destacadas.</p>';
+    });
+}
+
+// Ejecutar al inicio
+loadFeaturedNews();
