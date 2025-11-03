@@ -206,3 +206,136 @@
   font-weight: bold;
   text-decoration: none;
 }
+
+/* ==== MENÚ MÓVIL ==== */
+.menu-movil {
+  display: none;
+  position: relative;
+  z-index: 999;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+  background-color: #d62828;
+  padding: 10px 16px;
+  border-radius: 4px;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1001;
+}
+
+.menu-panel {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 220px;
+  background: #fff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.menu-panel button {
+  background: #f3f3f3;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.menu-panel button:hover {
+  background: #d62828;
+  color: #fff;
+}
+
+.close-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .categorias {
+    display: none; /* Oculta las categorías normales */
+  }
+
+  .menu-movil {
+    display: block; /* Muestra el menú móvil */
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #searchForm {
+    width: 100%;
+  }
+
+  .news-section,
+  .featured-section {
+    margin: 12px;
+    padding: 10px;
+  }
+
+  .featured-card {
+    flex: 0 0 260px;
+  }
+
+  .featured-card img {
+    height: 140px;
+  }
+}
+
+/* ==== AJUSTES DE ENCABEZADO EN MÓVIL ==== */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 50px; /* para que no lo tape el botón ☰ */
+    position: relative;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  #searchForm {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end; /* empuja el input hacia la derecha */
+    gap: 5px;
+  }
+
+  #searchForm input {
+    flex: 1;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+  }
+
+  #searchForm button {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
