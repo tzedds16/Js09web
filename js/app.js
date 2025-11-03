@@ -30,7 +30,6 @@ function createSection(label, id) {
   return cards
 }
 
-// Renderiza artículos 
 function renderArticles(container, articles) {
   if (!articles || articles.length === 0) {
     const msg = document.createElement('p')
@@ -79,7 +78,6 @@ function renderArticles(container, articles) {
   });
 }
 
-// Fetch por categoría 
 function loadAllCategories() {
   const promises = categories.map(cat => {
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=${cat.key}&apiKey=${API_KEY}`
@@ -122,7 +120,6 @@ function attachCategoryFilters() {
 }
 loadAllCategories()
 
-// Filtrado por búsqueda
 const searchForm = document.getElementById('searchForm')
 const searchInput = document.getElementById('searchInput')
 
@@ -217,7 +214,6 @@ function loadFeaturedNews() {
     });
 }
 
-// Ejecutar al inicio
 loadFeaturedNews()
 
 // ==== MENÚ MÓVIL ====
@@ -225,24 +221,20 @@ const menuToggle = document.getElementById('menuToggle')
 const menuPanel = document.getElementById('menuPanel')
 const closeBtn = menuPanel.querySelector('.close-btn')
 
-// Abrir menú
 menuToggle.addEventListener('click', () => {
   menuPanel.style.display = 'flex'
 });
 
-// Cerrar menú
 closeBtn.addEventListener('click', () => {
   menuPanel.style.display = 'none'
 });
 
-// Cerrar menú al hacer clic fuera
 document.addEventListener('click', (e) => {
   if (!menuPanel.contains(e.target) && !menuToggle.contains(e.target)) {
     menuPanel.style.display = 'none'
   }
 });
 
-// Eventos de botones del menú móvil
 menuPanel.querySelectorAll('button[data-cat]').forEach(btn => {
   btn.addEventListener('click', () => {
     const label = btn.textContent.trim().toLowerCase()
@@ -258,11 +250,10 @@ menuPanel.querySelectorAll('button[data-cat]').forEach(btn => {
       }
     });
     if (!matched) sections.forEach(s => s.style.display = '')
-    menuPanel.style.display = 'none'; // cerrar menú tras seleccionar
+    menuPanel.style.display = 'none'; 
   });
 });
 
-// === OCULTAR SECCIÓN DESTACADAS AL CAMBIAR CATEGORÍA ===
 function ocultarDestacadasAlFiltrar() {
   const featuredSection = document.getElementById('featuredSection')
   const categoryButtons = document.querySelectorAll('.categorias button, #menuPanel button[data-cat]')
@@ -270,9 +261,9 @@ function ocultarDestacadasAlFiltrar() {
   categoryButtons.forEach(button => {
     button.addEventListener('click', () => {
       if (button.id === 'homeBtn') {
-        featuredSection.style.display = 'block' // vuelve a aparecer solo en inicio
+        featuredSection.style.display = 'block' 
       } else {
-        featuredSection.style.display = 'none' // se oculta en cualquier otra sección
+        featuredSection.style.display = 'none' 
       }
     })
   })

@@ -11,12 +11,12 @@
   color: black;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* título a la izquierda, búsqueda a la derecha */
+  justify-content: space-between; 
   gap: 10px;
   padding: 10px 20px;
 }
 
-/* Estilos de búsqueda */
+/* BUSQUEDA */
 #searchForm {
   display: flex;
   gap: 5px;
@@ -269,11 +269,11 @@
 /* ==== RESPONSIVE ==== */
 @media (max-width: 768px) {
   .categorias {
-    display: none; /* Oculta las categorías normales */
+    display: none; 
   }
 
   .menu-movil {
-    display: block; /* Muestra el menú móvil */
+    display: block; 
   }
 
   .header {
@@ -300,14 +300,13 @@
   }
 }
 
-/* ==== AJUSTES DE ENCABEZADO EN MÓVIL ==== */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 50px; /* para que no lo tape el botón ☰ */
+    padding-top: 50px; 
     position: relative;
   }
 
@@ -319,7 +318,7 @@
   #searchForm {
     width: 90%;
     display: flex;
-    justify-content: flex-end; /* empuja el input hacia la derecha */
+    justify-content: flex-end; 
     gap: 5px;
   }
 
